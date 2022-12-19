@@ -1,0 +1,1 @@
+# ARIMA-and-GARCH-Modelling-on-EUR-USD-Data-followed-by-Time-Series-Analysis-Using-Rolling-Window-in-R
