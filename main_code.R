@@ -1,4 +1,4 @@
-#MOHAMMED ABDUL HAFEEZ KHAN - 2019A7TS0091U
+#MOHAMMED ABDUL HAFEEZ KHAN
 
 #Import libraries
 library(forecast)
@@ -12,7 +12,7 @@ library(rugarch)
 rm(list=ls()) 
 
 #Set the working directory
-setwd("C:\\Users\\HAFEEZ KHAN\\Desktop\\FRAM\\Assignment")
+setwd("C:\\Users\\HAFEEZ KHAN\\Desktop\\FRAM")
 
 #Read the csv file
 data = read.csv("DATA.csv",header = T)
