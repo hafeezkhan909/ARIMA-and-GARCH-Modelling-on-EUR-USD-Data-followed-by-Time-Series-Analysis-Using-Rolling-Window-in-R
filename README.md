@@ -7,7 +7,7 @@ Once the data was cleaned up and ready for use, the following steps were carried
 1.	ADF, PP, and KPSS test on the price observations of EURUSD data. 
 
 | Using Price |	ADF test	|  PP test  |	KPSS test |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | p-value | 0.1261 | 0.05186 | 0.01 |
 
 So, for the ADF and PP test, the H0 (null) hypothesis is that the time series is not stationary and the H1 (alternative) hypothesis is that the time series is stationary. As it can be observed that the p-values obtained for price were greater than 5%, i.e., 12.61% for ADF test and 5.186% for PP test, the H0 hypothesis was accepted. Consequently, when checking for the KPSS test, the p-value obtained was less than 5%, i.e., 1%. In this test, H0 hypothesis is that the time series is stationary, while the H1 hypothesis is that the time series is not stationary. So, as the value of the KPSS test was less than 5%, the H0 hypothesis was rejected. From these three results attained, it was concluded that the price time series was not stationary. Due to this, the first degree of integration of the price observations was done and the similar tests were carried out on that return observations. 
@@ -25,12 +25,31 @@ By plotting these two graphs, it was clearly seen that the price observations we
 4.	ADF, PP, and KPSS test on the return observations of EURUSD data. 
 
 | Using Return |	ADF test |	PP test |	KPSS test |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | p-value |	0.01 | 0.01 |	0.1 |
 
 As we can observe in the table above, the ADF and PP test was less than 5%, and KPSS test was greater then 5%. As a result, it can be substantiated that the time series was stationary, and we can move ahead for analysing and modelling of the data using ARIMA and GARCH models.
 
 5.	Descriptive Statistics of the return observations
+
+| Parameters |	Returns |
+| :---: | :---: |
+| Nobs	| 3344.000000 |
+| NAs	| 0.000000 |
+| Minimum	| -0.143324 |
+| Maximum	| 0.159632 |
+| 1st Quartile	| -0.003396 |
+| 3rd Quartile	| 0.003346 |
+| Mean	| -0.000061 |
+| Median	| 0.000000 |
+| Sum	| -0.204390 |
+| SE Mean	| 0.000139 |
+| LCL Mean	| -0.000334 |
+| UCL Mean	| 0.000211 |
+| Variance	| 0.000065 |
+| Standard Deviation	| 0.008035 |
+| Skewness	| 0.654367 |
+| Kurtosis	| 95.021583 |
 
 
 The Basic statistics table above shows 16 parameters about the return data. It shows that there was a total of 3344 observations seen, and no null values were to be found (as we took care of it in the beginning itself!). The minimum return value to be found was -0.143324, while the maximum return value was 0.159632. The mean, median, and sum of the data were -0.000061, 0.000000, -0.204390 respectively. "LCL" and "UCL" stand for lower/upper confidence limits, computed under the null hypothesis of independent and identically distributed. The LCL and UCL mean’s to be found in the data were -0.000334 and 0.000211 respectively. The variance and standard deviation calculated of the data was 0.000065 and 0.008035 respectively. It became clear by looking at the mean and standard deviation that the data exhibit stationarity. The value of skewness, i.e., 0.654367, indicated that the return data was moderately skewed, as it lied between 0.5 and 1. The kurtosis observed in the data was about 95.021583. This showed that the distribution was leptokurtic (fat tailed), as it had an excess kurtosis of more than 0.  
