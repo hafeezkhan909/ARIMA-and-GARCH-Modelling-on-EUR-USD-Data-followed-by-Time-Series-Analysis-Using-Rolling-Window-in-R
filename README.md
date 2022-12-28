@@ -51,7 +51,6 @@ As we can observe in the table above, the ADF and PP test was less than 5%, and 
 | Skewness	| 0.654367 |
 | Kurtosis	| 95.021583 |
 
-
 The Basic statistics table above shows 16 parameters about the return data. It shows that there was a total of 3344 observations seen, and no null values were to be found (as we took care of it in the beginning itself!). The minimum return value to be found was -0.143324, while the maximum return value was 0.159632. The mean, median, and sum of the data were -0.000061, 0.000000, -0.204390 respectively. "LCL" and "UCL" stand for lower/upper confidence limits, computed under the null hypothesis of independent and identically distributed. The LCL and UCL mean’s to be found in the data were -0.000334 and 0.000211 respectively. The variance and standard deviation calculated of the data was 0.000065 and 0.008035 respectively. It became clear by looking at the mean and standard deviation that the data exhibit stationarity. The value of skewness, i.e., 0.654367, indicated that the return data was moderately skewed, as it lied between 0.5 and 1. The kurtosis observed in the data was about 95.021583. This showed that the distribution was leptokurtic (fat tailed), as it had an excess kurtosis of more than 0.  
 
 6.	Test for normality
@@ -68,11 +67,17 @@ Initially the partial autocorrelation function (pacf) and auto correlation funct
 ![image](https://user-images.githubusercontent.com/82383549/209843442-1212fbe0-d8c2-4a4e-ab85-a336d65787d8.png)
 
 Model 1: The ARIMA model selected was an AR (2) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=2, d=0, q=0), on both Akaike information criterion (aic), and Bayesian information criterion (bic).    
+
 Model 2: The ARIMA model selected was an MA (2) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=0, d=0, q=2), on aic.    
+
 Model 3: The ARIMA model selected was an MA (1) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=0, d=0, q=1), on bic.    
+
 Model 4: The ARIMA model selected was an ARIMA (1,0,1) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=1, d=0, q=1), on aic.    
+
 Model 5: The ARIMA model selected was an ARIMA (0,0,1) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=0, d=0, q=1), on bic.    
+
 Model 6: The ARIMA model selected was an ARIMA (8,0,0) model (with zero mean), and the lags were fixed on r(t-1), r(t-2), r(t-7), and r(t-8).    
+
 Model 7: The ARIMA model selected was an ARIMA (0,0,9) model (with zero mean), and the lags were fixed on r(t-1), r(t-7), and r(t-9).    
 
 9.	In case of ARIMA modelling, the forecast evaluation was conducted by considering 50% of the observations as the training set and the remaining 50% observations as the test set. 
@@ -81,6 +86,15 @@ The rolling window analysis was used for the back testing of the models in which
 
 Now this testing data of the 7 models was evaluated with the help of Mean Absolute Error (MAE) and Mean Squared Error (MSE). The following table shows the MAE and MSE attained by the various models.
 
+| Models | MAE (%) |	MSE (%) |
+| :---: | :---: | :---: |
+| Model 1 |	0.3735856	|	0.002622164 |
+| Model 2	|	0.3739174	|	0.002625655 |
+| Model 3	|	0.3752014	|	0.002640315 |
+| Model 4	|	0.3740866	|	0.002627469 |
+| Model 5	|	0.3752014	|	0.002640315 |
+| Model 6	|	0.3740381	|	0.002626942 |
+| Model 7	|	0.3750563	|	0.002638665 |
 
 As it can be observed in the table above, Model 1 and Model 2 attained the least amount of MAE and MSE percentage. The MAE of the models was low as they performed well in keeping the average error between the predictions and intended targets substantially low. Similarly, the MSE was also low as well, which measured the amount of error in the models and assessed the average squared difference between the observed and predicted values. 
 
@@ -106,6 +120,14 @@ Now as the AR (2) model outperformed all the other models based on MAE and MSE, 
 
 The table below shows the optimal parameters of GARCH model using Normal Distribution model.
 
+| OPTIMAL PARAMETERS |	ESTIMATE |	PR (> |T|) |
+| :---: | :---: | :---: |
+| MU |	0.000008 |	0.921917 |
+| AR1	|	-0.082229	|	0.000016 |
+| AR2	|	0.000080	|	0.996596 |
+| OMEGA	|	0.000000	|	0.754374 |
+| ALPHA1	|	0.048044	|	0.000000 |
+| BETA1	|	0.950951	|	0.000000 |
 
 From the table, it was deduced that ar1, alpha1, and beta1 were significant as the values were less than 0.05. Also, omega (constant term), alpha1, and beta1 were positive, and the sum of alpha1 and beta1 was less than 1. Since the GARCH model satisfied all the basic conditions, it substantiated that its robustness. 
 
@@ -125,6 +147,11 @@ The functions parameters were set as follows: the training started from 100th ob
 
 The table below shows the ratio of Actual VaR exceed with respect to Expected Exceed for the 3 models.
 
+| MODEL |	ACTUAL% |
+| :---: | :---: |
+| NORMAL DISTRIBUTION	| 1.20 |
+| STUDENT’S T DISTRIBUTION	| 1.33 |
+| SKEWED STUDENT’S T DISTRIBUTION	| 1.26 |
 
 The figure below gives us an illustration of the actual values (black lines) and the predicted values (green lines) when using the Normal Distribution model.
 
