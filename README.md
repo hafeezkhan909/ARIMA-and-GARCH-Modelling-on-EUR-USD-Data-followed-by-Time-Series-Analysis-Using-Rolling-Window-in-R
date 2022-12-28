@@ -120,7 +120,7 @@ Now as the AR (2) model outperformed all the other models based on MAE and MSE, 
 
 The table below shows the optimal parameters of GARCH model using Normal Distribution model.
 
-| OPTIMAL PARAMETERS | ESTIMATE |	PR |
+| OPTIMAL PARAMETERS | ESTIMATE |	PR (> mod(T) |
 | :---: | :---: | :---: |
 | MU | 0.000008 |	0.921917 |
 | AR1	|	-0.082229	|	0.000016 |
