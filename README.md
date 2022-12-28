@@ -6,9 +6,9 @@ Once the data was cleaned up and ready for use, the following steps were carried
 
 1.	ADF, PP, and KPSS test on the price observations of EURUSD data. 
 
-                                            | Using Price |	ADF test	|  PP test  |	KPSS test |
-                                            | :---: | :---: | :---: | :---: |
-                                            | p-value | 0.1261 | 0.05186 | 0.01 |
+| Using Price |	ADF test	|  PP test  |	KPSS test |
+| :---: | :---: | :---: | :---: |
+| p-value | 0.1261 | 0.05186 | 0.01 |
 
 So, for the ADF and PP test, the H0 (null) hypothesis is that the time series is not stationary and the H1 (alternative) hypothesis is that the time series is stationary. As it can be observed that the p-values obtained for price were greater than 5%, i.e., 12.61% for ADF test and 5.186% for PP test, the H0 hypothesis was accepted. Consequently, when checking for the KPSS test, the p-value obtained was less than 5%, i.e., 1%. In this test, H0 hypothesis is that the time series is stationary, while the H1 hypothesis is that the time series is not stationary. So, as the value of the KPSS test was less than 5%, the H0 hypothesis was rejected. From these three results attained, it was concluded that the price time series was not stationary. Due to this, the first degree of integration of the price observations was done and the similar tests were carried out on that return observations. 
 
