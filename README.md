@@ -120,14 +120,14 @@ Now as the AR (2) model outperformed all the other models based on MAE and MSE, 
 
 The table below shows the optimal parameters of GARCH model using Normal Distribution model.
 
-| OPTIMAL PARAMETERS | ESTIMATE |	PR (> |T|) |
+| OPTIMAL PARAMETERS | ESTIMATE |	PR |
 | :---: | :---: | :---: |
-| MU |	0.000008 |	0.921917 |
+| MU | 0.000008 |	0.921917 |
 | AR1	|	-0.082229	|	0.000016 |
 | AR2	|	0.000080	|	0.996596 |
 | OMEGA	|	0.000000	|	0.754374 |
-| ALPHA1	|	0.048044	|	0.000000 |
-| BETA1	|	0.950951	|	0.000000 |
+| ALPHA1	|	0.048044 | 0.000000 |
+| BETA1	|	0.950951 | 0.000000 |
 
 From the table, it was deduced that ar1, alpha1, and beta1 were significant as the values were less than 0.05. Also, omega (constant term), alpha1, and beta1 were positive, and the sum of alpha1 and beta1 was less than 1. Since the GARCH model satisfied all the basic conditions, it substantiated that its robustness. 
 
