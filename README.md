@@ -25,7 +25,7 @@ By plotting these two graphs, it was clearly seen that the price observations we
 4.	ADF, PP, and KPSS test on the return observations of EURUSD data. 
 
 | Using Return |	ADF test |	PP test |	KPSS test |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | p-value |	0.01 | 0.01 |	0.1 |
 
 As we can observe in the table above, the ADF and PP test was less than 5%, and KPSS test was greater then 5%. As a result, it can be substantiated that the time series was stationary, and we can move ahead for analysing and modelling of the data using ARIMA and GARCH models.
