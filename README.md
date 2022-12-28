@@ -36,4 +36,77 @@ The p-value attained while testing the data for normality was less than 2.2e-16,
 Similarly, when the return values were tested for autocorrelation the p-value recorded was less than 2.2e-16. The H0 hypothesis says that the time series does not have autocorrelation. But as the value was less than 5%, the H0 hypothesis was rejected and the H1 hypothesis accepted i.e., time series entails autocorrelation. 
 
 8.	ARIMA Modelling
-Initially the partial autocorrelation function (pacf) and auto correlation function (acf) of the time series data were plotted. The ARIMA models: Model 1 through Model 5 were created with the help auto ARIMA function. The Model 6 and Model 7 were consequently created by manually fixing the lags, which were determined from the pacf and acf graphs, respectively.  
+Initially the partial autocorrelation function (pacf) and auto correlation function (acf) of the time series data were plotted. The ARIMA models: Model 1 through Model 5 were created with the help auto ARIMA function. The Model 6 and Model 7 were consequently created by manually fixing the lags, which were determined from the pacf and acf graphs, respectively. 
+
+![image](https://user-images.githubusercontent.com/82383549/209843433-fd86b70a-772a-4a96-a15e-b7ebd4a16601.png)
+
+![image](https://user-images.githubusercontent.com/82383549/209843442-1212fbe0-d8c2-4a4e-ab85-a336d65787d8.png)
+
+Model 1: The ARIMA model selected was an AR (2) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=2, d=0, q=0), on both Akaike information criterion (aic), and Bayesian information criterion (bic).    
+Model 2: The ARIMA model selected was an MA (2) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=0, d=0, q=2), on aic.    
+Model 3: The ARIMA model selected was an MA (1) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=0, d=0, q=1), on bic.    
+Model 4: The ARIMA model selected was an ARIMA (1,0,1) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=1, d=0, q=1), on aic.    
+Model 5: The ARIMA model selected was an ARIMA (0,0,1) model (with zero mean), as the auto ARIMA generated the optimal parameter values of (p=0, d=0, q=1), on bic.    
+Model 6: The ARIMA model selected was an ARIMA (8,0,0) model (with zero mean), and the lags were fixed on r(t-1), r(t-2), r(t-7), and r(t-8).    
+Model 7: The ARIMA model selected was an ARIMA (0,0,9) model (with zero mean), and the lags were fixed on r(t-1), r(t-7), and r(t-9).    
+
+9.	In case of ARIMA modelling, the forecast evaluation was conducted by considering 50% of the observations as the training set and the remaining 50% observations as the test set. 
+
+The rolling window analysis was used for the back testing of the models in which initially the first 50% observations were used to train the model and forecast 1 observation ahead of the training data (using it as the testing data) [2]. After this was performed, the window was shifted down by a stride of 1 (removing the first observation from the window and including the previous test observation in the window, to predict the next test observation). This way the model was step-by-step trained on the former 50% data to forecast latter 50% of the data (testing data). 
+
+Now this testing data of the 7 models was evaluated with the help of Mean Absolute Error (MAE) and Mean Squared Error (MSE). The following table shows the MAE and MSE attained by the various models.
+
+
+As it can be observed in the table above, Model 1 and Model 2 attained the least amount of MAE and MSE percentage. The MAE of the models was low as they performed well in keeping the average error between the predictions and intended targets substantially low. Similarly, the MSE was also low as well, which measured the amount of error in the models and assessed the average squared difference between the observed and predicted values. 
+
+Due to this analysis, it was safely concluded that AR (2) and MA (2) models were the best fit models (mainly AR (2)) for the EURUSD data and can be used for forecasting the future returns. The following equation depicts Model 1:
+
+Model_1 = (-0.2409)Model_1(t-1) + (-0.0832)Model_1(t-2)
+
+Moving ahead, we plotted the forecasts for the test data, which showed how the models behaved. Below are two figures that depict the behaviour of AR (2) and MA (2) models. The plotted forecasts for rest of the models can be found in the program.
+
+![image](https://user-images.githubusercontent.com/82383549/209843659-ea35c2ff-f5df-4b72-82fb-91c4b3840301.png)
+
+![image](https://user-images.githubusercontent.com/82383549/209843668-a8a7d61d-788e-4837-b66d-df61e8927c38.png)
+
+10.	Test for Heteroscedasticity
+
+The ARCH test was used on the return data and residual of the AR (2) model in order to determine the presence or absence of heteroscedasticity, having the significance level of 1%. 
+
+11.	GARCH Modelling
+
+Beginning with the GARCH modelling, we first determined what the GARCH order would be. Running the function of GARCH on return data, it was found that the alpha (ARCH order) and beta (GARCH order) values were both 0.05, stating that the GARCH order of (p, q) was (1,1). Therefore, we used symmetric GARCH, which indicated that there was equal amount of positive news and negative news in the data.
+
+Now as the AR (2) model outperformed all the other models based on MAE and MSE, we consequently used it in determining the ARMA order in GARCH specifications.
+
+The table below shows the optimal parameters of GARCH model using Normal Distribution model.
+
+
+From the table, it was deduced that ar1, alpha1, and beta1 were significant as the values were less than 0.05. Also, omega (constant term), alpha1, and beta1 were positive, and the sum of alpha1 and beta1 was less than 1. Since the GARCH model satisfied all the basic conditions, it substantiated that its robustness. 
+
+The graph below illustrates our previous claim i.e., there is an equal amount of impact of the positive news and negative news observed in the return data. 
+
+![image](https://user-images.githubusercontent.com/82383549/209843994-2539afae-eacd-45f5-8f25-86b3d4e4235b.png)
+
+Similarly, the optimal parameters and the impact of Student’s t Distribution and Skewed Student’s t Distribution models have been done in the program, which depict their robustness’. 
+
+12.	In case of GARCH modelling, the forecast evaluation was conducted by considering 50% of the observations as the training set and the remaining 50% observations as the test set. 
+
+In this section, we will check the performance of how many predicted and actual values are similar. In case our return is more negative (Return << VaR), then we call it as an exception, and therefore we are trying to find out how many such exceptions are there in the data, using the ugarchroll function [2]. This function will help in doing the back testing of the historical data, based on the model that we have specified. 
+
+The functions parameters were set as follows: the training started from 100th observation, so as to avoid the convergence problem. A window of size of 400 was used, which had a moving characteristic, and using this window as the training data, the immediate next value was forecasted. We used a hybrid solver and calculated the VaR, with an alpha of 1% and a confidence level of 99%. 
+
+3 models were used for this, namely: Normal Distribution, Student’s t Distribution, and Skewed Student’s t Distribution. Using the unconventional and conventional coverage provided in the back testing report, we determined that the Normal Distribution model has the best performance. These are the kinds of statistical tests which tell us if the Actual VaR has exceeded the 1% alpha. The H0 hypothesis in both these coverages say: Correct Exceedances and Independence of Failure.  All the models attained a p-value of more than 5%, so we don’t reject the H0 hypotheses in any case. Finally, the Actual VaR exceedance with respect to expected exceedance in Normal Distribution attained a lower ratio when compared against the Student’s t and Skewed Student’s t Distributions. As a result, it showed that utilizing the Normal Distribution model to forecast the values had little deviation, making it a robust model.
+
+The table below shows the ratio of Actual VaR exceed with respect to Expected Exceed for the 3 models.
+
+
+The figure below gives us an illustration of the actual values (black lines) and the predicted values (green lines) when using the Normal Distribution model.
+
+![image](https://user-images.githubusercontent.com/82383549/209844181-0b8de9e9-e002-4a91-8463-5c3a785f427f.png)
+
+References:
+
+1.	https://rdrr.io/cran/greybox/man/ro.html
+2.	https://www.rdocumentation.org/packages/rugarch/versions/1.4-9/topics/ugarchroll-methods
+
